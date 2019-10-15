@@ -13,7 +13,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      {path : 'chat', component : ChatBoxComponent}
+      {path : 'chat-box', component : ChatBoxComponent}
     ])
   ]
 })

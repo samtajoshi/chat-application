@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 //importing feature modules
 import { ChatModule } from './chat/chat.module';
 import { UserModule } from './user/user.module';
+
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './user/login/login.component';
 import { CookieService } from 'ng2-cookies';
