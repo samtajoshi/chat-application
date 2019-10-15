@@ -1,59 +1,65 @@
 <nav class="navbar  navbar-expand-md  navbar-inverse ">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarSupportedContent" aria-expanded="false">
+
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-expanded="false">
             <span class="sr-only">Togglenavigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">My Chat</a>
-            </div>
-
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-            <ul class="nav navbar-nav ml-auto">
-
-                <li class="nav-right m-5 p-5"  >
-
-                    <a (click)="goToSignup()">Signup</a>
-
-                </li>
-
-            </ul>
-
-        </div>
+        </button>
+        <a class="navbar-brand" href="/">My Chat</a>
     </div>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="nav navbar-nav" >
+
+            <li class="nav-item" style="text-align: right;">
+
+                <a (click)="goToSignup()">Signup</a>
+
+            </li>
+
+        </ul>
+
+    </div>
+
 
 
 </nav>
 <!--navbar ends-->
 <div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-4 p-5 box" style="text-align: center;">
-            <form>
-                <h2 class="form-signin-heading">Login To Start Chat</h2>
+    <div class="row justify-content-center" style="align-content: center;align-items: center;">
+        <div class="col-sm-12 col-md-6">
+            
 
-                <br>
-                <div class="form-group">
-                    <!--label>Email</label-->
-                    <input type="email" placeholder="Email" class="form-control" name="email" [(ngModel)]="email"
-                        required>
-                </div>
-                <div class="form-group">
-                    <!--label>Password</label-->
-                    <input type="password" placeholder="Password" class="form-control" name="password"
-                        [(ngModel)]="password" required>
-                </div>
-                <br>
+                
+                    <h2 class="form-signin-heading" style="text-align: center;">Login To Start Chat</h2>
 
-                <button class="btn btn-lg btn-primary btn-block" type="button" (click)="signinFunction()">Login</button>
+                    <br>
+                    <div class="form-group">
+                        <!--label>Email</label-->
+                        <input type="email" placeholder="Email" class="form-control" name="email" [(ngModel)]="email"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <!--label>Password</label-->
+                        <input type="password" placeholder="Password" class="form-control" name="password"
+                            [(ngModel)]="password" required>
+                    </div>
+                    <br>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="button"
+                        (click)="signinFunction()">Login</button>
 
 
 
-                <div class="col-sm"></div>
-            </form>
+                    <br>
+                
+
+            
         </div>
     </div>
 </div>
