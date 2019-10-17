@@ -50,6 +50,16 @@ export class AppService {
 
   }   //end of signInFunction
 
+  //logout function
+  public logout :any =(data) =>{
+    const params = new HttpParams()
+    .set('userId', data.userId)
+    .set('authToken',data.authToken);
+
+    return this.http.post(`${this.baseUrl}/users/logout`,params);
+
+  }   //end of logout function
+
   private handleError(err : HttpErrorResponse){
     let msg ='';
     if(err.error instanceof Error) {

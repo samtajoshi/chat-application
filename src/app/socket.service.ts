@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import io from 'socket.io-client';
 import { Observable } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpClient } from '@angular/common/http';
+import { CookieService } from 'ng2-cookies';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +13,7 @@ export class SocketService {
   public socket :any;
   public url = 'http://chatapi.edwisor.com';
 
-  constructor() {
+  constructor(public http : HttpClient, public cookie : CookieService) {
     //handshake is made
     //connection is being created
     this.socket = io(this.url);
@@ -41,6 +44,16 @@ export class SocketService {
       })
     })
   }   //end of disconnectedSocket()
+
+
+  public chatByUserId : any = (userId) =>{
+    return Observable.create((observer) =>{
+    this.socket.on(userId, (data)=>{
+      observer.next();
+    })
+  })
+  }//end of chatByUserId()
+
   //end of events to be listened
 
   //events to be emitted
@@ -48,6 +61,28 @@ export class SocketService {
     this.socket.emit("set-user",authToken);
   }//end of setUser()
 
+  public sendChatMessage :any = (data) => {
+    this.socket.emit("chat-msg",data);
+  }//end of sendChatMessage()
+
+  public markChatAsSeen : any =(data) =>{
+    this.socket.emit("mark-chat-as-seen",data);
+  }//end of markChatAsSeen()
+
+  //end of events to be emitted
+
+  //event of diconnecting the socket
+  public exitSocket :any =() =>{
+    this.socket.disconnect();
+  }
+
+//method requesting to get paginated chats of user
+public getChat(senderId,receiverId,skip):any{
+  return this.http.get(`${this.url}/api/v1/chat/get/for/user?senderId=${senderId}&receiverId=${receiverId}&authToken=${this.cookie.get('authToken')}`)
+ 
+} 
+
+  //method for error handling
   private handleError(err : HttpErrorResponse){
     let errorMessage = '';
 

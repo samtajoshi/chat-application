@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 //importing toaster related modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -25,6 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ChatModule,
     UserModule,
     BrowserAnimationsModule,
