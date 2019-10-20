@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
 
-    <!--div class="displayBlockMobile" style="position:fixed;width:100%;z-index:1;">
+    <div class="d-block d-sm-none" style="position:fixed;width:100%;z-index:1;">
 
-      <div class="col-sm-12 p-0">
+      <div>
 
-        <nav class="navbar navbar-expand-md navbar-fixed navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-sm navbar-fixed navbar-dark bg-dark">
 
           <a class="navbar-brand text-white">
             {{userInfo.firstName}} {{userInfo.lastName}}
@@ -30,7 +30,6 @@
                 *ngFor="let user of userList">
                 <div class="userPresence" *ngIf="user.userId != userInfo.userId">
                   <user-details [userFirstName]="user.name" [userLastName]="''" [userStatus]="'online'" [messageRead]="user.unread"></user-details>
-                {{user.name}}
                 </div>
               </li>
               
@@ -42,9 +41,9 @@
 
       </div>
 
-    </div-->
+    </div>
 
-    <div class="col-12 displayNoneMobile col-sm-4 col-md-4 people-list p-0" id="people-list">
+    <div class=" d-none d-sm-block col-sm-4 col-md-4 people-list p-0" id="people-list">
 
       <div class="p-3 text-white textCapitalize textCenter">
         {{userInfo.firstName}} {{userInfo.lastName}}
@@ -63,7 +62,6 @@
           *ngFor="let user of userList" (click)="userSelectedToChat(user.userId, user.name)">
           <div class="userPresence" *ngIf="user.userId != userInfo.userId"  >
             <user-details [userFirstName]="user.name" [userLastName]="''" [userStatus]="'online'" [messageRead]="user.unread"></user-details>
-          
           </div>
         </li>
        
@@ -72,9 +70,9 @@
 
     </div>
 
-    <div class="col-12 col-sm-8 col-md-8 chat">
-      <div class="chat-header clearfix mobileMenu" *ngIf="receiverName">
-        <first-char [name]="receiverName" [userBg]="'blue'" [userColor]="'white'" (notify) = "showUserName($event)"></first-char>
+    <div class="col-12 col-sm-8 col-md-8 chat" >
+      <div class="chat-header mobileMenu clearfix "  *ngIf="receiverName">
+        <first-char [name]="receiverName" [userBg]="'blue'" [userColor]="'white'" (notify)="showUserName($event)"></first-char>
 
         <div class="chat-about">
           <div class="chat-with">Chat with {{receiverName}}</div>
@@ -82,7 +80,7 @@
       </div>
       <!-- end chat-header -->
 
-      <div #scrollMe [scrollTop]="(scrollToChatTop)?0:scrollMe.scrollHeight" class="chat-history" *ngIf="receiverName">
+      <div #scrollMe [scrollTop]="(scrollToChatTop)?0:scrollMe.scrollHeight" style="height: 80vh;" class="chat-history" *ngIf="receiverName">
 
         <ul>
           <li class="textCenter" *ngIf="receiverName">
@@ -104,25 +102,24 @@
 
             </div>
             <div class="message" [ngClass]="{'float-right other-message': message.senderId == userInfo.userId, 'my-message': message.senderId != userInfo.userId}">
-              {{message?.message| removeSpecialCharPipe: '#' | removeSpecialCharPipe: '$'}}
+              {{message?.message | removeSpecialCharPipe: '#' | removeSpecialCharPipe: '$'}}
             </div>
           </li>
 
         </ul>
 
       </div>
-      <div *ngIf="!receiverName" class="col-sm blankContent">
+      <div *ngIf="!receiverName" class="col-sm blankContent" >
         Click on user for start a chat!!!
       </div>
       <!-- end chat-history -->
 
-      <div class="row chat-message clearfix p-2" *ngIf="receiverName">
-        <div class="col-11">
-        <input type="text" class="form-control" [(ngModel)]="messageText" name="messageText" id="message-to-send" (keydown)="sendMessageUsingKeyPress($event)" placeholder="Type your message">
-        </div>
-        <div class="col-1">
-        <button (click)="sendMessage()">Send</button>
-      </div>
+      <div class="form-control chat-message clearfix p-2" *ngIf="receiverName">
+        <input type="text"  style="width: 85%;" name="messageText" id="message-to-send" (keydown)="sendMessageUsingKeypress($event)" [(ngModel)]="messageText"
+          placeholder="Type your message" >
+
+        <button (click)="sendMessage()"  style="width: 10%;">Send</button>
+
       </div>
       <!-- end chat-message -->
 

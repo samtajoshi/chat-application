@@ -187,6 +187,7 @@
     margin-bottom: 2em;
     width: 90%;
     position: relative;
+    
   }
   
   .chat .chat-history .message:after {
@@ -216,7 +217,7 @@
     left: 90%;
   }
   
-  .chat .chat-message textarea {
+  .chat .chat-message  {
     width: 100%;
     border: none;
     padding: 0.8em 1.42em;
