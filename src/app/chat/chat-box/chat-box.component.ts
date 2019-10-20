@@ -139,16 +139,19 @@ export class ChatBoxComponent implements OnInit {
   public getPreviousChatWithAUser : any = ()=>{
    let previousChat= (this.messageList.length>0?this.messageList.slice() : []);
    this.socketService.getChat(this.userInfo.userId,this.cookieService.get('receiverId'),this.pageValue*10).subscribe(
-     data =>{
+     data =>{console.log(data)
        if(data.status===200){
          this.messageList = data.data.concat(previousChat);
+         
        }
        else{
+         this.messageList = previousChat;
          this.toastr.error('no messages available');
        }
+       this.loadingPreviousChat = false;
      },
      err =>{
-        this.toastr.error('some error occured');
+        this.toastr.error('some error occured: ');
      }
    );
   } //end getPreviousChatWithUser()

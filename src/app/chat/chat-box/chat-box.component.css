@@ -298,7 +298,8 @@
   }
   
   .activeChat {
-    background: #393a41;
+    background: #e2e3e7;
+    border-radius: 5%;
   }
   
   .typeOfChats {

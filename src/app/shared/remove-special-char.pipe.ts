@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class RemoveSpecialCharPipe implements PipeTransform {
 
-  transform(value: any, character: any[]): any {
+  transform(value: any, character: any): any {
     return value.replace(character,'');
   }
 

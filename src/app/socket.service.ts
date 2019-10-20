@@ -78,7 +78,7 @@ export class SocketService {
 
 //method requesting to get paginated chats of user
 public getChat(senderId,receiverId,skip):any{
-  return this.http.get(`${this.url}/api/v1/chat/get/for/user?senderId=${senderId}&receiverId=${receiverId}&authToken=${this.cookie.get('authToken')}`)
+  return this.http.get(`${this.url}/api/v1/chat/get/for/user?senderId=${senderId}&receiverId=${receiverId}&skip=${skip}&authToken=${this.cookie.get('authToken')}`)
  
 } 
 
