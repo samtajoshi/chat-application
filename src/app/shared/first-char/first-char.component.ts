@@ -9,6 +9,8 @@ export class FirstCharComponent implements OnInit, OnChanges{
   @Input() name : string;
   @Input() userBg : string;
   @Input() userColor :string;
+  @Input() userWidth : any;
+  @Input() userHeight : any;
   public firstChar : string;
   private _name : string;
 

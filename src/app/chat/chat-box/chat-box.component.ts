@@ -18,8 +18,7 @@ import { Router } from '@angular/router';
   providers : [SocketService]
 })
 export class ChatBoxComponent implements OnInit {
-  // @ViewChild('modalContent', { static: true }) 
-  // modalContent: TemplateRef<any>;
+  
 
   //@ViewChild('scrollMe',  {read: ElementRef }) 
   @ViewChild('scrollMe',  {static :true})

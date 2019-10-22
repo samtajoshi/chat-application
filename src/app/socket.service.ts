@@ -11,7 +11,7 @@ import { CookieService } from 'ng2-cookies';
 })
 export class SocketService {
   public socket :any;
-  public url = 'http://chatapi.edwisor.com';
+  public url = 'https://chatapi.edwisor.com';
 
   constructor(public http : HttpClient, public cookie : CookieService) {
     //handshake is made
@@ -49,7 +49,7 @@ export class SocketService {
   public chatByUserId : any = (userId) =>{
     return Observable.create((observer) =>{
     this.socket.on(userId, (data)=>{
-      observer.next();
+      observer.next(data);
     })
   })
   }//end of chatByUserId()

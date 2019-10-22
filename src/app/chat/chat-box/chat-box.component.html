@@ -41,16 +41,14 @@
       <br>
       <h4 style="margin-left: 1em;">Online Users : </h4>
       <br>
-      <ul>
-        <div *ngFor="let user of userList"  [ngClass]="{'activeChat': user.chatting==true}" (click)="userSelectedToChat(user.userId,user.name)">
+      <div style="overflow-y: scroll;height: 50vh;">
+        <div style="border-style: outset;" *ngFor="let user of userList"  [ngClass]="{'activeChat': user.chatting==true}" (click)="userSelectedToChat(user.userId,user.name)">
           <div *ngIf="user.userId!=userInfo.userId">
             <user-details [userFirstName]="user.name" [userLastName]="''" [userStatus]="'online'"
               [messageRead]="user.unread"></user-details>
-          </div>
-          <br>
-          <hr>
+          </div>          
         </div>
-      </ul>
+      </div>
     </div>
     <div class="col-12 col-md-8">
       <br>
@@ -60,23 +58,22 @@
       </div>
       <hr>
       
-      <div #scrollMe [scrollTop]="(scrollToChatTop)?0:scrollMe.scrollHeight" data-spy="scroll" style="height: 70vh;overflow-y: scroll" *ngIf="receiverId!=userInfo.userId">
-        <div  (click)="loadEarlierPageOfChat()" style="text-align: center;">Load Previous Chat</div>
+      <div #scrollMe [scrollTop]="(scrollToChatTop)?0:scrollMe.scrollHeight" data-spy="scroll" class="box-height" style="overflow-y: scroll;overflow-x:hidden;" *ngIf="receiverId!=userInfo.userId">
+        <div  (click)="loadEarlierPageOfChat()" style="text-align: center;"><h5>Load Previous Chat</h5></div>
         
-        <div *ngIf="loadingPreviousChat==true"  style="text-align: center;">Loading...</div>
+        <div *ngIf="loadingPreviousChat==true"  style="text-align: center;"><span class="spinner-border text-success"></span></div>
         <br>        
-          <div *ngFor="let message of messageList">
+          <div *ngFor="let message of messageList" class="clearfix">
             <div *ngIf ="message.senderId==userInfo.userId" class="float-right" style="margin-right: 5%;">
-              <div>{{message?.createdOn|date}}&nbsp;&nbsp;{{message?.senderName}}</div>
-              <div class="float-right">{{message?.message}}</div>
+              <div class="float-right">{{message?.createdOn|date}}&nbsp;&nbsp;{{message?.senderName}}</div><br>
+              <div class="float-right message me ">{{message?.message}}</div>
             </div>
-            <div *ngIf ="message.senderId!=userInfo.userId" class="float-left">
-                <div>{{message?.createdOn|date}}&nbsp;&nbsp;{{message?.senderName}}</div>
-              {{message?.message}}
+            <div *ngIf ="message.senderId!=userInfo.userId" class="float-left" style="margin-right: 5%;">
+             
+                <li class="float-left" >{{message?.senderName}}&nbsp;&nbsp;{{message?.createdOn|date}}</li>
+              <div class="float-left message other " >{{message?.message}}</div>
             </div>
-            <br>
-            <br>
-            <hr>
+            
           </div>        
       </div>
       <div *ngIf="receiverId==userInfo.userId" style="text-align: center;height: 72vh;">
